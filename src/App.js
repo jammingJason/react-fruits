@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import foods from './foods';
+import { choice, remove } from './helpers';
+const App = () => {
+  let tempFruit = [];
 
-function App() {
+  const strFruit = choice(foods);
+  foods.map((f) => {
+    if (strFruit !== f) {
+      tempFruit.push(f);
+    }
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <p>I'd like one {strFruit}, please.</p>
+      <p>Here you go : {strFruit}</p>
+      <p>Delicious! May I have another {strFruit}?</p>
+      <p>
+        I'm sorry, we're all out of {strFruit}. We have
+        {remove(foods, strFruit).length} left of these :
+        {remove(foods, strFruit)}
+      </p>
+    </>
   );
-}
-
+};
 export default App;
